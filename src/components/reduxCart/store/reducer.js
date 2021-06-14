@@ -19,7 +19,10 @@ export default (state = [], action) => {
             return updateList;
 
         case DELETE_GOODS:
-            return null;
+            const deleteList = JSON.parse(JSON.stringify(state)) 
+            const goodsIndex = deleteList.findIndex(item => item.id === action.payload)
+            deleteList.splice(goodsIndex, 1)
+            return deleteList;
 
         default:
             return state;
