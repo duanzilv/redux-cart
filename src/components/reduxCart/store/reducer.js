@@ -1,6 +1,8 @@
 import { ADD_GOODS, UPDATE_GOODS, DELETE_GOODS } from './actionType'
+// 从本地取出刷新或是关闭之前的结果
+const initState = JSON.parse(window.localStorage.getItem('goodsList') || '[]')
 
-export default (state = [], action) => {
+export default (state = initState, action) => {
     switch (action.type) {
         case ADD_GOODS:
             const oldAddList = JSON.parse(JSON.stringify(state))

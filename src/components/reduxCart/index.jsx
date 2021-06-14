@@ -20,7 +20,17 @@ class Index extends Component {
         store.subscribe(() => {
             this.caclCount()
         })
+        // 离线缓存
+        window.addEventListener('beforeunload', () => {
+            // 测试下保存到本地
+            window.localStorage.setItem('goodsList', JSON.stringify(store.getState()))
+        })
     }
+
+    componentWillUnmount() {
+        // 组件销毁的时候，移除事件监听
+        window.removeEventListener('beforeunload',() => {})
+      }
 
     caclCount() {
         const list = store.getState()
